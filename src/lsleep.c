@@ -20,6 +20,7 @@ Because sometimes, you just want sleep.
 #include <lualib.h>
 
 #define LSLEEP_LIBNAME "lsleep"
+#define LSLEEP_VERSION "lsleep 1.0.5"
 
 /***
 @function lsleep
@@ -87,6 +88,8 @@ static const struct luaL_Reg lsleep_funcs [] = {
 	luaL_newlib(L, lsleep_funcs); //returned table with sleep and usleep as the fields.
 	luaL_newlib(L, lsleep_metamethods); //add the metatable, which adds the __call to sleep.
 	lua_setmetatable(L, -2);
+	lua_pushliteral(L,LSLEEP_VERSION);
+	lua_setfield(L,-2,"_VERSION");
 	return 1;
 }
 
